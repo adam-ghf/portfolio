@@ -1,0 +1,7 @@
+.nav-link.active {
+    font-weight: 600;
+}
+.nav-link.active::after {
+    transform: scaleX(1);
+    height: 4px;
+}

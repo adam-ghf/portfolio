@@ -27,16 +27,21 @@
     <nav class="navbar navbar-expand-md bg-dark navbar-dark container-fluid nav-gradient-border px-3 flex-column">
       
 
-      <div class="d-flex w-100 align-items-center position-relative d-md-none">
+      <div class="d-flex w-100 align-items-center d-md-none">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        
+        <img src="./assets/images/Icons/Mitsiku_pfp.jpg" alt="Logo" style="height: 40px; "  class="rounded">
+
+
+        <div class="flex-grow-1 text-center">
+          <span class="fw-bold text-white fs-5">Contact</span>
+        </div>
+
+        <button class="navbar-toggler ms-auto" type="button"
+          data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
-        <div class="position-absolute start-50 translate-middle-x">
-          <span class="fw-bold text-white fs-5">Contact</span>
-        </div>
 
       </div>
 
@@ -68,9 +73,9 @@
               <li><a class="dropdown-item" href="./project-music_downloader.html">Music Downlaoder</a></li>
               <li><a class="dropdown-item" href="./project-folder_sync.html">Folder Sync</a></li>
               <li><a class="dropdown-item" href="./project-home_server.html">Home Server</a></li>
-              <li><a class="dropdown-item" href="#">Project 4</a></li>
-              <li><a class="dropdown-item" href="#">Project 5</a></li>
-              <li><a class="dropdown-item" href="#">Project 6</a></li>
+              <li><a class="dropdown-item" href="./project-project_4.html">Project 4</a></li>
+              <li><a class="dropdown-item" href="./project-project_5.html">Project 5</a></li>
+              <li><a class="dropdown-item" href="./project-project_6.html">Project 6</a></li>
             </ul>
           </li>
 
@@ -147,7 +152,36 @@
       <div class="container mt-5 mb-5">
         <div class="row g-4 align-items-stretch">
 
+          <div class="col-md-6">
 
+            <div style="padding: 5px; border-radius: 20px;
+                        background: linear-gradient(135deg, #52c2fa, #fa6cff); height: 100%;">
+
+              <div style="border-radius: 18px; overflow: hidden; height: 100%;">
+
+                <div id="map" style="height: 500px; width: 100%;"></div>
+
+              </div>
+
+            </div>
+
+            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+            <script>
+              const map = L.map('map').setView([51.2194, 4.4025], 13);
+
+              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+              }).addTo(map);
+
+              const marker = L.marker([51.2194, 4.4025]).addTo(map);
+              marker.bindPopup("Antwerpen!").openPopup();
+            </script>
+
+          </div>
+          
           <div class="col-md-6">
             <div style="padding: 3px; border-radius: 20px;
                         background: linear-gradient(135deg, #52c2fa, #fa6cff); height: 100%;">
@@ -186,39 +220,51 @@
 
 
 
-          <div class="col-md-6">
 
-            <div style="padding: 5px; border-radius: 20px;
-                        background: linear-gradient(135deg, #52c2fa, #fa6cff); height: 100%;">
-
-              <div style="border-radius: 18px; overflow: hidden; height: 100%;">
-
-                <div id="map" style="height: 500px; width: 100%;"></div>
-
-              </div>
-
-            </div>
-
-            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-            <script>
-              const map = L.map('map').setView([51.2194, 4.4025], 13);
-
-              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-              }).addTo(map);
-
-              const marker = L.marker([51.2194, 4.4025]).addTo(map);
-              marker.bindPopup("Antwerpen!").openPopup();
-            </script>
-
-          </div>
 
 
         </div>
       </div>
+
+
+      <script>
+        function loadCats() {
+          console.log("LOAD CATS CALLED");
+
+          fetch("https://api.thecatapi.com/v1/images/search?limit=5")
+            .then(res => res.json())
+            .then(data => {
+              const container = document.getElementById("catContainer");
+
+              container.innerHTML = "";
+
+              data.forEach(cat => {
+                const img = document.createElement("img");
+                img.src = cat.url;
+                container.appendChild(img);
+              });
+            });
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+          loadCats();
+
+          document
+            .getElementById("getCats")
+            .addEventListener("click", loadCats);
+        });
+      </script>
+
+      <div class="text-center mb-5">
+        <button id="getCats"
+                class="btn w-15 text-light mb-4 "
+                style="background: linear-gradient(135deg, #52c2fa, #fa6cff); border: none;">
+          CATS!!!!
+        </button>
+        <div id="catContainer"></div>
+      </div>
+
+    
 
       <footer class="bg-dark text-light border-top border-secondary mt-5 py-3">
         <div class="container text-center">

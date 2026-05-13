@@ -1,10 +1,12 @@
+html, body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
 .nav-gradient-border {
   border-bottom: 5px solid transparent;
   border-image: linear-gradient(to right, rgb(254, 100, 254), rgb(0, 191, 255)) 1;
 }
-
-
-
 
 .capsule {
   position: absolute;
@@ -51,20 +53,22 @@
 }
 
 
+#catContainer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;  
+  justify-content: center;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+#catContainer img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  align-items: center;  
+  justify-content: center;
+}
 
 
 
